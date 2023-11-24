@@ -38,6 +38,7 @@ class _RoundButtonsState extends State<RoundButtons> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.grey,
       onTap: () async {
         final tmp = widget.buttonColor;
         // widget.buttonColor = Colors.black;

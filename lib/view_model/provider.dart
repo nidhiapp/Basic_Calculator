@@ -35,7 +35,8 @@ class CalProvider with ChangeNotifier {
     //   return;
     // }
 
-    if (_currInput.isNotEmpty && isOperator(_currInput[_currInput.length - 1]) &&
+    if (_currInput.isNotEmpty &&
+        isOperator(_currInput[_currInput.length - 1]) &&
         isOperator(value)) {
       output = AppStrings.invalid;
       _currInput = output;
@@ -44,19 +45,25 @@ class CalProvider with ChangeNotifier {
       return;
     }
     digitcont.text = _currInput;
-    int location = digitcont.selection.start;
-    if (location < 0) {
-      debugPrint("Location Error Found");
+
+    if (_currInput.isEmpty) {
+      _currInput = value;
+      digitcont.text = _currInput;
+      notifyListeners();
       return;
     }
 
-    // Get the left text of cursor
-    String prefixText = digitcont.text.substring(0, location);
-    String suffixText = digitcont.text.substring(location);
-
-    debugPrint(
-        "Location is: $location \n prefixText is : $prefixText \n suffixText is: $suffixText \n value is: $value");
-    _currInput = prefixText + value + suffixText;
+    int location = digitcont.selection.start;
+    if (location >= 0) {
+      // Get the left text of cursor
+      String prefixText = digitcont.text.substring(0, location);
+      String suffixText = digitcont.text.substring(location);
+      debugPrint(
+          "Location is: $location \n prefixText is : $prefixText \n suffixText is: $suffixText \n value is: $value");
+      _currInput = prefixText + value + suffixText;
+    } else {
+      _currInput = _currInput+value;
+    }
     digitcont.text = _currInput;
     // digitcont.selection = TextSelection(
     //   baseOffset: location + value.length,
@@ -122,7 +129,8 @@ class CalProvider with ChangeNotifier {
     //     ? _currInput.substring(0, _currInput.length - 1)
     //     : '';
 
-    int location = digitcont.selection.start;
+    int location = digitcont.selection.base.offset;
+
     if (location < 0) {
       debugPrint("Location Error Found ");
       return;
@@ -135,6 +143,7 @@ class CalProvider with ChangeNotifier {
     try {
       prefixText = prefixText.substring(0, prefixText.length - 1);
       digitcont.text = prefixText + suffixText;
+      _currInput = digitcont.text;
       digitcont.selection = TextSelection(
         baseOffset: location,
         extentOffset: location + 1,
