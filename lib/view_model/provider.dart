@@ -20,6 +20,13 @@ class CalProvider with ChangeNotifier {
   }
 
   void appendInputs(String value) {
+
+    debugPrint("_currInput is $_currInput \n value is $value");
+    if (_currInput.trim().isEmpty && isOperator(value.trim())) {
+      debugPrint("");
+      return;
+    }
+
     if (value == AppStrings.decimal &&
         _currInput.endsWith(AppStrings.decimal)) {
       output = AppStrings.invalid;
@@ -44,6 +51,7 @@ class CalProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
+
     digitcont.text = _currInput;
 
     if (_currInput.isEmpty) {
@@ -59,10 +67,10 @@ class CalProvider with ChangeNotifier {
       String prefixText = digitcont.text.substring(0, location);
       String suffixText = digitcont.text.substring(location);
       debugPrint(
-          "Location is: $location \n prefixText is : $prefixText \n suffixText is: $suffixText \n value is: $value");
+          " Location is: $location \n prefixText is : $prefixText \n suffixText is: $suffixText \n value is: $value");
       _currInput = prefixText + value + suffixText;
     } else {
-      _currInput = _currInput+value;
+      _currInput = _currInput + value;
     }
     digitcont.text = _currInput;
     // digitcont.selection = TextSelection(
