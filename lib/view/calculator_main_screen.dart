@@ -36,13 +36,21 @@ class CalculatorMainScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(
-                              child: Text(
-                                calProvider.currentInput.toString(),
+                              child: TextFormField(
                                 textAlign: TextAlign.end,
+                                cursorColor: Colors.white,
+                                maxLines: null,
+                                showCursor: true,
                                 style: const TextStyle(
                                     fontSize: 35,
                                     color: AppColors.buttonColor,
                                     fontWeight: FontWeight.w700),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                ),
+                                controller: calProvider.digitcont,
                               ),
                             ),
                           ],

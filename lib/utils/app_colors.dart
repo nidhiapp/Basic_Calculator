@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const gradientColor1 = Color.fromARGB(255, 54, 52, 52);
-  static const gradientColor2 = Colors.black;
+  static const gradientColor1 = Colors.black;
+  static const gradientColor2 = Color.fromARGB(255, 30, 28, 27);
   static const scaffoldWhite = Color(0xffF7F7F8);
   static const Color buttonColor = Color.fromRGBO(255, 255, 255, 1);
   static const Color delColor = Color.fromARGB(255, 124, 186, 237);

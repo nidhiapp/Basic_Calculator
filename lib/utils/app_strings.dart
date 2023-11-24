@@ -1,5 +1,3 @@
-
-
 class AppStrings {
   static const String one = "1";
   static const String two = "2";
@@ -13,7 +11,7 @@ class AppStrings {
   static const String ten = "0";
   static const String decimal = ".";
   static const String c = "C";
-  static const String remainder= "%";
+  static const String remainder = "%";
   static const String divide = "/";
   static const String mltiply = "*";
   static const String add = "+";
@@ -21,6 +19,9 @@ class AppStrings {
   static const String equal = "=";
   static const String ac = "AC";
   static const String doubleZero = "00";
-  static const String error= "Error";
-
+  static const String invalid = "invalid input";
+  static const String missingop = 'Missing operand';
+  static const String opwithZero = 'Division by zero';
+  static const String cantModulo = 'Modulo by zero';
+    static const String calculator= "CALCULATOR";
 }
